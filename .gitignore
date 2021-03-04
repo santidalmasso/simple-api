@@ -1,0 +1,40 @@
+.vscode/
+.idea/
+.env
+.env.test
+node_modules/
+jspm_packages/
+
+# TypeScript v1 declaration files
+typings/
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Optional npm 
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+### vscode ###
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+### yarn ###
+
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+
+!.yarn/cache
+/dist
+/scripts/build.js

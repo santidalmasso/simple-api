@@ -1,0 +1,53 @@
+version: "3.8"
+
+services:
+  app:
+    build: .
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_DB: notes
+      MYSQL_USER: root
+      MYSQL_PASS: root
+      REDIS_HOST: redis
+    depends_on:
+      - mysql
+      - redis
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/usr/src/
+      - /usr/src/node_modules
+    command: npm run dev
+
+  mysql:
+    image: mysql
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci --default-authentication-plugin=mysql_native_password
+    ports:
+      - 3306:3306
+    volumes:
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - db:/var/lib/mysql
+      - mysql-db:/etc/mysql/conf.d
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: test_db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: user
+
+  redis:
+    image: redis
+    ports:
+      - 6379:6379
+    volumes:
+      - redis-db:/data
+      - redis-db:/usr/local/etc/redis/redis.conf
+
+  adminer:
+    image: adminer
+    ports:
+      - 8080:8080
+
+volumes:
+  db:
+  mysql-db:
+  redis-db:

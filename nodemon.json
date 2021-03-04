@@ -1,0 +1,7 @@
+{
+  "watch": ["src"],
+  "ignore": ["src/**/*.test.ts"],
+  "ext": "ts,mjs,js,json",
+  "exec": "node esbuild.js && node dist/server.js",
+  "legacyWatch": true
+}
